@@ -18,7 +18,7 @@ Welcome <%=session.getAttribute("username")%>
     <input type="text" placeholder="Enter Identy Card Number" name="id">
     <label><b>Secret Key</b></label>
     <input type="password" placeholder="Enter Secret Key" name="key">
-    <input type="text" id="tokentxt" name="tokentxt"/>
+    <input type="hidden" id="tokentxt" name="tokentxt"/>
     <input type="submit" value="Submit"/>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
