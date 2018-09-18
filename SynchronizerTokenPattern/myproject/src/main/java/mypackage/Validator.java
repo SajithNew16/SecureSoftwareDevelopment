@@ -15,10 +15,7 @@ import java.net.URLEncoder;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import javax.swing.JOptionPane;
-
 import net.sf.json.JSONObject;
-
-
 import org.apache.commons.codec.binary.Base64;
 
 
