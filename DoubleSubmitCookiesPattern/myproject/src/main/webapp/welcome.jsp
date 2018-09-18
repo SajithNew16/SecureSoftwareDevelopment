@@ -11,16 +11,14 @@
     <title>Welcome</title>
 </head>
 <body>
-Welcome <%=session.getAttribute("username")%>
-<%--<%=token = session.getAttribute("username")%>--%>
-<form action="validate" method="POST">
-    <label><b>Identy Card Number</b></label>
-    <input type="text" placeholder="Enter Identy Card Number" name="id">
-    <label><b>Secret Key</b></label>
-    <input type="password" placeholder="Enter Secret Key" name="key">
-    <input type="hidden" id="tokentxt" name="tokentxt" value="<%=session.getAttribute("csrfToken")%>"/>
-    <input type="submit" value="Submit"/>
-</form>
-
+<h1 align="center">Welcome <%=session.getAttribute("username")%></h1>
+<div align="center">
+    <form action="validate" method="POST">
+        <label><b>Secret Key</b></label>
+        <input type="password" placeholder="Enter Secret Key" name="key">
+        <input type="hidden" id="tokentxt" name="tokentxt" value="<%=session.getAttribute("csrfToken")%>"/>
+        <input type="submit" value="Submit"/>
+    </form>
+<div/>
 </body>
 </html>
