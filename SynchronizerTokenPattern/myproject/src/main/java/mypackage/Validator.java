@@ -14,6 +14,7 @@ import java.util.Map;
 import java.net.URLEncoder;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import javax.swing.JOptionPane;
 
 import net.sf.json.JSONObject;
 
@@ -26,9 +27,9 @@ public class Validator extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+
         Cookie[] cookies = request.getCookies();
         String csrfToken = Storage.getInstance().getItem(cookies[0].getValue());
-//        System.out.println("valodatpr " + csrf);
         //writing data to json
         response.setContentType("application/json;charset=utf-8");
         JSONObject member = new JSONObject();
@@ -50,24 +51,16 @@ public class Validator extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            String id = request.getParameter("id");
-            String key = request.getParameter("key");
-            String recvCsrfToken = request.getParameter("tokentxt");
-            out.println("id " + id);
-            out.println("key " + key);
-            out.println("token " + recvCsrfToken);
-            Cookie[] cookies = request.getCookies();
-            String csrfToken = Storage.getInstance().getItem(cookies[0].getValue());
-            if (recvCsrfToken.equals(csrfToken)) {
-                out.println("Verified Successfully");
-//                response.sendRedirect("confirm.jsp");
-            } else {
-                out.println("Verification is unsuccessfull");
-            }
-        } finally {
-            out.close();
+        String key = request.getParameter("key");
+        String recvCsrfToken = request.getParameter("tokentxt");
+        Cookie[] cookies = request.getCookies();
+        String csrfToken = Storage.getInstance().getItem(cookies[0].getValue());
+        if (recvCsrfToken.equals(csrfToken)) {
+            JOptionPane.showMessageDialog(null, "Verified Successfully", "InfoBox: " + "Verification", JOptionPane.INFORMATION_MESSAGE);
+            response.sendRedirect("https://github.com/SajithNew16/SecureSoftwareDevelopment");
+        } else {
+            JOptionPane.showMessageDialog(null, "Verification is Unsuccessful", "InfoBox: " + "Verification", JOptionPane.INFORMATION_MESSAGE);
+            response.sendRedirect("welcome.jsp");
         }
 
     }

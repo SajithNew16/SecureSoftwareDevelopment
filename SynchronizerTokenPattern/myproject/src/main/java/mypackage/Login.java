@@ -22,18 +22,8 @@ public class Login extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-       /* //generate a session id and store it as a cookie in the browser
-        String sessionid = generateSessionId();
-        Cookie c1 = new Cookie("sessionid", sessionid);
-        c1.setMaxAge(60 * 60); //1 hour
-        c1.setSecure(true);
-        response.addCookie(c1);*/
-       /* Cookie[] cookies = request.getCookies();
-        String value = cookies[0].getValue();
-        System.out.println(value);*/
         processRequest(request, response);
     }
-
 
     private static final String SHA_1_PRNG = "SHA1PRNG";
 
@@ -61,16 +51,12 @@ public class Login extends HttpServlet {
             String password = request.getParameter("password");
             //request for auto generated cookies in the browser
             Cookie[] cookies = request.getCookies();
-            cookies[0].setPath("/");
-            if (username.equals("a") && password.equals("b")) {
+            cookies[0].setPath("/myproject/");
+            if (username.equals("John") && password.equals("John123")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 // generate csrf token and store it in the hash map of Storage class server side
-//                Storage storageObj = Storage.getInstance();
-//                String csrfToken = generateCSRFToken();
                 Storage.getInstance().addItem(cookies[0].getValue(), generateCSRFToken());
-//                System.out.println("lging " + Storage.getInstance().getItem(cookies[0].getValue()));
-//                session.setAttribute("csrfToken", csrfToken);
                 response.sendRedirect("welcome.jsp");
             } else {
                 out.println("Invalid username and/or password");

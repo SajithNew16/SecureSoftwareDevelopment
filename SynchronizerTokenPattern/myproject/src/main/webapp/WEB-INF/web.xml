@@ -6,16 +6,6 @@
     <display-name>Archetype Created Web Application</display-name>
 
     <servlet>
-        <servlet-name>myservlet</servlet-name>
-        <servlet-class>mypackage.ServletDemo</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>myservlet</servlet-name>
-        <url-pattern>/myservlet</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
         <servlet-name>login</servlet-name>
         <servlet-class>mypackage.Login</servlet-class>
     </servlet>
